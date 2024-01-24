@@ -12,7 +12,7 @@ class ClientAdapterTests {
     void fillEntity_UsingDTO_ShouldFillEntity() {
         Client client = new Client();
         ClientControllerDTO dto = new ClientControllerDTO("5678");
-        dto.setId(1234L);
+        dto.setId("1234");
 
         ClientAdapter.fillEntity(dto, client);
 

@@ -9,6 +9,6 @@ import lombok.Setter;
 public abstract class AbstractControllerDTO {
 
     @Schema(defaultValue = "1")
-    protected Long id;
+    protected String id;
 
 }

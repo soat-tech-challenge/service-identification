@@ -28,7 +28,7 @@ public class ClientJpaAdapter implements IClientGateway {
     public Client saveAndFlush(Client client) {
         ClientPersistenceEntity entity = new ClientPersistenceEntity(client);
 
-        entity = jpaRepository.saveAndFlush(entity);
+        entity = jpaRepository.save(entity);
 
         return entity.toModel();
     }
