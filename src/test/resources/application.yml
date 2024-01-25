@@ -8,28 +8,15 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
-
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:db_test;DB_CLOSE_DELAY=-1;NON_KEYWORDS=KEY,VALUE
   main:
     banner-mode: off
   output:
     ansi:
       enabled: always
-
-  flyway:
-    locations: classpath:br/com/grupo63/techchallenge/db/migrations/{vendor}/
-  docker:
-    compose:
-      enabled: false
-
 jwt:
   token:
     key:
       public: "${JWT_PUBLIC_KEY:MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoNgzDuoQFLRFb3ivIA5CEHFRuqltT7xR6hFu+6xPD5q0sq8Exjue5s5MIQwkJMldk8/Dhp85OT5ULmAA5x4hPZfFlQEMlMPT5QItQImQ7UFCxBbMwksZlUQEP37Aa5OJ+KhEPBDTe0AaXqXFKxIOLEjHYWqhFHq5whxNotbuPrqLWEopCAgY4lqCe0pSoT3V+7Jszpq+czLBOl6eCbD933pK98/aVD9yA2+7LNOwmkYVyR4kvXX25K5Q/DDUZgMWyQTm3TCnfCrbdH6IH/Z12/DkePNuGFygUKDCEYPkPYnHbRXee4CXbeDkEdgZwzGJPM8gPhSUFrrzFVeihvN5OQIDAQAB}"
-
 management:
   endpoints:
     enabled-by-default: false
-
