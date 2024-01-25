@@ -23,3 +23,6 @@ amazon:
   aws:
     accesskey: "${AMAZON_AWS_ACCESSKEY:accesskey}"
     secretkey: "${AMAZON_AWS_SECRETKEY:secretkey}"
+server:
+  servlet:
+    context-path: "/identification"

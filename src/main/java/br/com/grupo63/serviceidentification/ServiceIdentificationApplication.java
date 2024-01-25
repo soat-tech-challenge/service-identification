@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(
         info = @Info(title = "${info.name}", description = "${info.description}", version = "${info.version}"),
         servers ={
-                @Server(url = "/", description = "Current URL"),
+                @Server(url = "${server.servlet.context-path}", description = "Current URL"),
                 @Server(url = "localhost:8080", description = "Local"),
                 @Server(url = "${docs.api.url}", description = "API Gateway Invoke URL")
         })
