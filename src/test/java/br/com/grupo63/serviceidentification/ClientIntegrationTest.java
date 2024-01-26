@@ -1,13 +1,13 @@
 package br.com.grupo63.serviceidentification;
 
 import br.com.grupo63.serviceidentification.api.controller.client.ClientAPIController;
-import br.com.grupo63.serviceidentification.api.controller.dto.DefaultResponseDTO;
 import br.com.grupo63.serviceidentification.controller.ClientController;
 import br.com.grupo63.serviceidentification.controller.dto.ClientControllerDTO;
 import br.com.grupo63.serviceidentification.gateway.client.ClientJpaAdapter;
 import br.com.grupo63.serviceidentification.gateway.client.ClientJpaRepository;
 import br.com.grupo63.serviceidentification.gateway.client.entity.ClientPersistenceEntity;
 import br.com.grupo63.serviceidentification.usecase.client.ClientUseCase;
+import br.com.grupo63.techchallenge.common.api.controller.dto.DefaultResponseDTO;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

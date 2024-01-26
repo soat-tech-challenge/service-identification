@@ -1,6 +1,5 @@
 package br.com.grupo63.serviceidentification.entity.client;
 
-import br.com.grupo63.serviceidentification.entity.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +17,6 @@ public class Client {
     private String nationalId;
 
     public void delete() {
-        this.deleted = false;
+        this.deleted = true;
     }
 }

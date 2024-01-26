@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
-@Setter
 
 @DynamoDBTable(tableName = "clients")
 public class ClientPersistenceEntity {

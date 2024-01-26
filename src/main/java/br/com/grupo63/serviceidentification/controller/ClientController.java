@@ -3,9 +3,9 @@ package br.com.grupo63.serviceidentification.controller;
 import br.com.grupo63.serviceidentification.adapter.ClientAdapter;
 import br.com.grupo63.serviceidentification.controller.dto.ClientControllerDTO;
 import br.com.grupo63.serviceidentification.entity.client.Client;
-import br.com.grupo63.serviceidentification.exception.NotFoundException;
 import br.com.grupo63.serviceidentification.presenter.ClientPresenter;
 import br.com.grupo63.serviceidentification.usecase.client.ClientUseCase;
+import br.com.grupo63.techchallenge.common.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

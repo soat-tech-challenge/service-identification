@@ -1,10 +1,9 @@
 package br.com.grupo63.serviceidentification.api.controller.client;
 
-import br.com.grupo63.serviceidentification.api.controller.AbstractAPIController;
-import br.com.grupo63.serviceidentification.api.controller.dto.DefaultResponseDTO;
 import br.com.grupo63.serviceidentification.controller.ClientController;
 import br.com.grupo63.serviceidentification.controller.dto.ClientControllerDTO;
-import br.com.grupo63.serviceidentification.exception.NotFoundException;
+import br.com.grupo63.techchallenge.common.api.controller.AbstractAPIController;
+import br.com.grupo63.techchallenge.common.exception.NotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -69,7 +68,7 @@ public class ClientAPIController extends AbstractAPIController {
             summary = "Excluir cliente",
             description = "Exclui um cliente por id")
     @DeleteMapping("/{id}")
-    public ResponseEntity<DefaultResponseDTO> delete(@PathVariable("id") String id) throws NotFoundException {
+    public ResponseEntity delete(@PathVariable("id") String id) throws NotFoundException {
         clientController.delete(id);
         return ResponseEntity.ok().build();
     }

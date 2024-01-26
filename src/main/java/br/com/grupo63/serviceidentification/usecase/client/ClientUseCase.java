@@ -1,8 +1,8 @@
 package br.com.grupo63.serviceidentification.usecase.client;
 
 import br.com.grupo63.serviceidentification.entity.client.Client;
-import br.com.grupo63.serviceidentification.exception.NotFoundException;
 import br.com.grupo63.serviceidentification.gateway.client.IClientGateway;
+import br.com.grupo63.techchallenge.common.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
