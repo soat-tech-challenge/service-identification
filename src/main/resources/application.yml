@@ -33,9 +33,6 @@ management:
     web:
       exposure:
         include: health, info, metrics, shutdown
-docs:
-  api:
-    url: "${DOCS_API_URL:https://9ah1j49vm1.execute-api.us-east-2.amazonaws.com}"
 
 server:
   port: 8001
@@ -45,6 +42,7 @@ server:
 # --- Custom keys ---
 
 app:
+  docs-api-url: "${DOCS_API_URL:(no value)}"
   aws:
     access-key: "${AWS_ACCESS_KEY:no_access_key}"
     secret-key: "${AWS_SECRET_KEY:no_secret_key}"
