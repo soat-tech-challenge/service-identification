@@ -11,7 +11,7 @@
     </parent>
     <groupId>br.com.grupo63</groupId>
     <artifactId>serviceidentification</artifactId>
-    <version>4.3.0</version>
+    <version>4.3.1</version>
     <name>Service Identification</name>
     <description>FIAP SOAT1 2023 - Group 63 - Phase 4</description>
     <properties>
