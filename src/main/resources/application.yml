@@ -31,10 +31,13 @@ management:
   endpoint:
     health:
       show-components: always
+    shutdown:
+      enabled: true # For debugging
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: health, info, metrics, shutdown
+
 info:
   name: '@project.name@'
   description: '@project.description@'
@@ -43,3 +46,14 @@ info:
 docs:
   api:
     url: "${DOCS_API_URL:https://9ah1j49vm1.execute-api.us-east-2.amazonaws.com}"
+
+# --- Custom keys ---
+
+app:
+  aws:
+    access-key: "${AWS_ACCESS_KEY:no_access_key}"
+    secret-key: "${AWS_SECRET_KEY:no_secret_key}"
+    session-token: "${AWS_SESSION_TOKEN:}"
+    dynamodb:
+      endpoint: "${AWS_DYNAMODB_ENDPOINT:dynamodb.us-east-1.amazonaws.com}"
+

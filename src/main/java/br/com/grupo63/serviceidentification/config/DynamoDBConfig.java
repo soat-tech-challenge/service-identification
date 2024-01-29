@@ -2,6 +2,7 @@ package br.com.grupo63.serviceidentification.config;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.BasicSessionCredentials;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
@@ -18,30 +19,36 @@ import org.springframework.util.StringUtils;
 @EnableDynamoDBRepositories
         (basePackages = "br.com.grupo63.serviceidentification.gateway")
 public class DynamoDBConfig {
-    @Value("${amazon.dynamodb.endpoint}")
-    private String amazonDynamoDBEndpoint;
+    @Value("${app.aws.dynamodb.endpoint}")
+    private String awsDynamoDBEndpoint;
 
-    @Value("${amazon.aws.accesskey}")
-    private String amazonAWSAccessKey;
+    @Value("${app.aws.access-key}")
+    private String awsAccessKey;
 
-    @Value("${amazon.aws.secretkey}")
-    private String amazonAWSSecretKey;
+    @Value("${app.aws.secret-key}")
+    private String awsSecretKey;
+
+    @Value("${app.aws.session-token}")
+    private String awsSessionToken;
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         AmazonDynamoDB amazonDynamoDB
-                = new AmazonDynamoDBClient(amazonAWSCredentials());
+                = new AmazonDynamoDBClient(awsCredentials());
 
-        if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
-            amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
+        if (!StringUtils.isEmpty(awsDynamoDBEndpoint)) {
+            amazonDynamoDB.setEndpoint(awsDynamoDBEndpoint);
         }
 
         return amazonDynamoDB;
     }
 
     @Bean
-    public AWSCredentials amazonAWSCredentials() {
-        return new BasicAWSCredentials(
-                amazonAWSAccessKey, amazonAWSSecretKey);
+    public AWSCredentials awsCredentials() {
+        if (awsSessionToken == null || awsSessionToken.isBlank()) {
+            return new BasicAWSCredentials(
+                    awsAccessKey, awsSecretKey);
+        }
+        return new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken);
     }
 }
