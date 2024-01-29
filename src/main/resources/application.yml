@@ -10,14 +10,10 @@ spring:
     show-sql: true
   profiles:
     # Value comes from Maven profile (pom.xml)
-    active: '@spring.profiles.active@'
+    active: "@spring.profiles.active@"
   flyway:
     locations: classpath:db/migrations/{vendor}/
     enabled: true
-jwt:
-  token:
-    key:
-      public: "${JWT_PUBLIC_KEY}"
 
 springdoc:
   swagger-ui:
@@ -37,15 +33,14 @@ management:
     web:
       exposure:
         include: health, info, metrics, shutdown
-
-info:
-  name: '@project.name@'
-  description: '@project.description@'
-  version: '@project.version@'
-
 docs:
   api:
     url: "${DOCS_API_URL:https://9ah1j49vm1.execute-api.us-east-2.amazonaws.com}"
+
+server:
+  port: 8001
+  servlet:
+    context-path: "/identification"
 
 # --- Custom keys ---
 
@@ -57,3 +52,12 @@ app:
     dynamodb:
       endpoint: "${AWS_DYNAMODB_ENDPOINT:dynamodb.us-east-1.amazonaws.com}"
 
+info:
+  name: "@project.name@"
+  description: "@project.description@"
+  version: "@project.version@"
+
+jwt:
+  token:
+    key:
+      public: "${JWT_PUBLIC_KEY}"
