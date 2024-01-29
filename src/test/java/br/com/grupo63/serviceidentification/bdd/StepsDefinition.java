@@ -18,15 +18,15 @@ public class StepsDefinition {
     private int productAmount;
     private int productId;
     private Response response;
-    private String authorizationHeader = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIn0.GamJqeYQUXpkQ8SXxZtvN_k20-M5XDcv8VX40J24PSthU45OkXSuEuDjH71tVn0S2mwh5SbCL08TrkRhQph4TNTndf3UlL6knEOTshl_1H7jCYVQrA1WMNia6W_NBhWGUVsUSY8X_r9W7B3pk-unWUx_6Q20SFbrrEnIIRqdsEbX62wksuZECOJEsWA1HEYkmCZrpc9xgn13Cp7Go-wlF6xheXh-crr3EoJAAdgTnQ5V-sygBSDaylEcNqElPEgcelPgIPRjwDBsgaMeoIPyFsnc88QwMFYvzckTjPQnX3qPLOfjQKW-jNzzEaVzPI6wlJPLfvVVwMU92ThL0frO-g";
-    private static final String BASE_URL_IDENTIFICATION = "http://127.0.0.1:8080";
-    private static final String CONTEXT_PATH_IDENTIFICATION = "/clients";
-    private static final String BASE_URL_ORDERS = "http://127.0.0.1:8080";
-    private static final String CONTEXT_PATH_ORDERS = "/orders";
+    private String authorizationHeader = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2Q5MjVlOS0wZTM4LTRkMTUtODNlMC1hZDUxN2MxYmI5ODcifQ.Hqk-xR35ZSKuhTIetzyaMhwMSr5ANCvgLm4xM6kmkUBqlex0zAsIY-DKGV_TCEFI8H1oJL8OTdeZKq4CMmTWdADxSGf8bxBVi3Z0PSClWFRrxwl1-Za5oyyypUfSS1mYgDTUDb3tAg7susUS5CKUzHd30zwWjOKCXRFzbxVm8j5VTh3Zjz2aI5EJMjzyZ79KxEyN0cS59Xtm0Crhaor9-nhGI6S_73HOmHvbrA5_AOsUVNpTZgppYMjJkHxwDimxyxH_tzakCQLUAG0Yw2YNKhUPVADEeBFuDN2kiy81XbYt12JgPK3_KdDqzb6cKjXYMeFVAEFJkcF6IGbcRQK__g";
+    private static final String BASE_URL_IDENTIFICATION = "http://127.0.0.1:8081";
+    private static final String CONTEXT_PATH_IDENTIFICATION = "/identification/clients";
+    private static final String BASE_URL_ORDERS = "http://127.0.0.1:8083";
+    private static final String CONTEXT_PATH_ORDERS = "/order/orders";
     private static final String BASE_URL_PAYMENT = "http://127.0.0.1:8080";
-    private static final String CONTEXT_PATH_PAYMENT = "/payments";
-    private static final String BASE_URL_PRODUCTION = "http://127.0.0.1:8080";
-    private static final String CONTEXT_PATH_PRODUCTION = "/orders";
+    private static final String CONTEXT_PATH_PAYMENT = "/payment/payments";
+    private static final String BASE_URL_PRODUCTION = "http://127.0.0.1:8082";
+    private static final String CONTEXT_PATH_PRODUCTION = "/production/status";
 
     @Given("User wants to identify with national id {string}")
     public void userWantsToIdentifyWithNationalId(String nationalId) {
@@ -120,9 +120,9 @@ public class StepsDefinition {
         response = given()
                 .header("Authorization", authorizationHeader)
                 .when()
-                .get(BASE_URL_ORDERS + CONTEXT_PATH_ORDERS + "/" + orderId);
+                .get(BASE_URL_PAYMENT + CONTEXT_PATH_PAYMENT + "/status?orderId=" + orderId);
         HashMap<String, Object> body = response.as(HashMap.class);
-        System.err.println("Order finished payment with payment method: " + ((HashMap<String, Object>)body.get("payment")).get("method") + " and now is with status: " + body.get("status"));
+        System.err.println("Order finished payment with status: " + body.get("status"));
     }
 
     @Given("Staff started preparing order {int}")
