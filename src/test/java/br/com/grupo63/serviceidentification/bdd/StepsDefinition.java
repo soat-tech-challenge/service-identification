@@ -18,14 +18,27 @@ public class StepsDefinition {
     private int productAmount;
     private int productId;
     private Response response;
-    private String authorizationHeader = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4Y2Q5MjVlOS0wZTM4LTRkMTUtODNlMC1hZDUxN2MxYmI5ODcifQ.Hqk-xR35ZSKuhTIetzyaMhwMSr5ANCvgLm4xM6kmkUBqlex0zAsIY-DKGV_TCEFI8H1oJL8OTdeZKq4CMmTWdADxSGf8bxBVi3Z0PSClWFRrxwl1-Za5oyyypUfSS1mYgDTUDb3tAg7susUS5CKUzHd30zwWjOKCXRFzbxVm8j5VTh3Zjz2aI5EJMjzyZ79KxEyN0cS59Xtm0Crhaor9-nhGI6S_73HOmHvbrA5_AOsUVNpTZgppYMjJkHxwDimxyxH_tzakCQLUAG0Yw2YNKhUPVADEeBFuDN2kiy81XbYt12JgPK3_KdDqzb6cKjXYMeFVAEFJkcF6IGbcRQK__g";
-    private static final String BASE_URL_IDENTIFICATION = "http://127.0.0.1:8081";
+    private String authorizationHeader = "Bearer " +
+            "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWQyZjM4My1hZmQ0LTRkZTQtOWY4MC1iZWU2NGQ5ZGRjNmQiLCJpYXQiOjE3MDY1NjY1MTcsImV4cCI6MTcwNjU3MDExN30.H-9boXhXOMqONjYK-_tryfCwv0ph7oSEsZchNAgUbgUcpPiquVfH3ijaUvCJJ3GLinuUtbwVy_Ub-WyTCMoKxCNH0HqFoCTneoPmSBtISTfEGkmIYOYbD6t992xHxCxdkEDzlUPIlg8p7JsBSD52OUPtmhrdQYOLdgYYoIJnEI7ZKZzHXbnMEJPbXOBdGnLVgKkrCVXDrEAehMnL09HHSlv4-F6GH3tY9zuuXAMDR6-lGDCa1VlIObshTqER8LxurWmLIGaTSauhNMHVw8set7XOdTQzvdf988Mh4ElH0VDiY8Od8jSmuq6xj2IjsFzyOBArZqEAUeHrFc4Lc4PT8g";
+
+
+    /* Uncomment if local */
+//    private static final String BASE_URL_IDENTIFICATION = "http://127.0.0.1:8081";
+//    private static final String BASE_URL_ORDERS = "http://127.0.0.1:8082";
+//    private static final String BASE_URL_PAYMENT = "http://127.0.0.1:8083";
+//    private static final String BASE_URL_PRODUCTION = "http://127.0.0.1:8084";
+
+    /* Uncomment if remote */
+    private static final String REMOTE_BASE_URL = "https://3843tddo99.execute-api.us-east-1.amazonaws.com";
+    private static final String BASE_URL_IDENTIFICATION = REMOTE_BASE_URL;
+    private static final String BASE_URL_ORDERS = REMOTE_BASE_URL;
+    private static final String BASE_URL_PAYMENT = REMOTE_BASE_URL;
+    private static final String BASE_URL_PRODUCTION = REMOTE_BASE_URL;
+
+
     private static final String CONTEXT_PATH_IDENTIFICATION = "/identification/clients";
-    private static final String BASE_URL_ORDERS = "http://127.0.0.1:8083";
     private static final String CONTEXT_PATH_ORDERS = "/order/orders";
-    private static final String BASE_URL_PAYMENT = "http://127.0.0.1:8080";
     private static final String CONTEXT_PATH_PAYMENT = "/payment/payments";
-    private static final String BASE_URL_PRODUCTION = "http://127.0.0.1:8082";
     private static final String CONTEXT_PATH_PRODUCTION = "/production/status";
 
     @Given("User wants to identify with national id {string}")
@@ -45,7 +58,7 @@ public class StepsDefinition {
     @Then("User identified")
     public void userIdentified() {
         HashMap<String, Object> body = response.as(HashMap.class);
-        System.err.println("The identification was done and the client has id: " + body.get("id"));
+        System.err.println("The identification was done and the client can use the generated token:\n" + body.get("token"));
     }
 
     @Given("User selected product {int} unit of product {int}")
@@ -57,6 +70,7 @@ public class StepsDefinition {
 
     @When("User checkout")
     public void userCheckout() {
+        System.out.println(BASE_URL_ORDERS + CONTEXT_PATH_ORDERS);
         response = given()
                 .header("Authorization", authorizationHeader)
                 .contentType(ContentType.JSON)
