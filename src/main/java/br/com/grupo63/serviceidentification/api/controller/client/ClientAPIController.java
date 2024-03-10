@@ -26,7 +26,7 @@ public class ClientAPIController extends AbstractAPIController {
             summary = "Identificar o cliente (Utilizado pelo Lambda de identificação)",
             description = "Recupera o ID do cliente caso ele exista e se não existir já o cria")
     @PostMapping("/identification")
-    public ResponseEntity<ClientControllerDTO> identify(@RequestParam String nationalId) throws NotFoundException {
+    public ResponseEntity<ClientControllerDTO> identify(@RequestParam String nationalId) {
         ClientControllerDTO clientDTO = new ClientControllerDTO(nationalId);
         return ResponseEntity.ok(clientController.identify(clientDTO));
     }
@@ -35,7 +35,7 @@ public class ClientAPIController extends AbstractAPIController {
             summary = "Cria um cliente",
             description = "Registra um cliente através de seu CPF")
     @PostMapping
-    public ResponseEntity<ClientControllerDTO> create(@RequestParam String nationalId) throws NotFoundException {
+    public ResponseEntity<ClientControllerDTO> create(@RequestParam String nationalId) {
         ClientControllerDTO clientDTO = new ClientControllerDTO(nationalId);
         return ResponseEntity.ok(clientController.create(clientDTO));
     }
@@ -68,10 +68,24 @@ public class ClientAPIController extends AbstractAPIController {
             summary = "Excluir cliente",
             description = "Exclui um cliente por id")
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable("id") String id) throws NotFoundException {
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) throws NotFoundException {
         clientController.delete(id);
         return ResponseEntity.ok().build();
     }
 
+    @Operation(
+            tags = "LGPD",
+            summary = "Exclusão de dados pessoais",
+            description = "Exclui um cliente por CPF e realiza anonimização dos dados pessoais. Utiliza os dados extras para validar se é o próprio usuário excluindo os dados.")
+    @DeleteMapping("/delete-personal-data")
+    public ResponseEntity<Void> deletePersonalData(
+            @RequestParam String nationalId,
+            @RequestParam String name,
+            @RequestParam String address,
+            @RequestParam String phoneNumber
+    ) throws NotFoundException {
+        clientController.deletePersonalData(nationalId);
+        return ResponseEntity.ok().build();
+    }
 
 }
