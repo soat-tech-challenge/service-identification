@@ -31,6 +31,7 @@ public class ClientPersistenceEntity {
     public ClientPersistenceEntity(Client client) {
         this.id = client.getId();
         this.nationalId = client.getNationalId();
+        this.deleted = client.isDeleted();
     }
 
     public Client toModel() {

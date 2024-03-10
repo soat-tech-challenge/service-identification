@@ -19,4 +19,5 @@ public class Client {
     public void delete() {
         this.deleted = true;
     }
+
 }

@@ -139,7 +139,7 @@ public class ClientIntegrationTest {
         when(clientJpaRepository.findByIdAndDeletedFalse(defaultClientPersistenceEntity.getId())).thenReturn(Optional.of(defaultClientPersistenceEntity));
         when(clientJpaRepository.save(any())).thenReturn(new ClientPersistenceEntity(defaultClientPersistenceEntity.getId(), true, defaultClientPersistenceEntity.getNationalId()));
 
-        ResponseEntity<DefaultResponseDTO> response = clientAPIController.delete(defaultClientPersistenceEntity.getId());
+        ResponseEntity<Void> response = clientAPIController.delete(defaultClientPersistenceEntity.getId());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNull(response.getBody());

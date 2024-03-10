@@ -58,4 +58,11 @@ public class ClientUseCase implements IClientUseCase {
         gateway.saveAndFlush(client);
     }
 
+    @Override
+    public void deletePersonalData(Client client) {
+        client.setNationalId("00000000000");
+        client.delete();
+        gateway.saveAndFlush(client);
+    }
+
 }

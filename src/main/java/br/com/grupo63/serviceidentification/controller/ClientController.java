@@ -17,13 +17,13 @@ public class ClientController {
 
     private final ClientUseCase clientUseCase;
 
-    public ClientControllerDTO identify(ClientControllerDTO dto) throws NotFoundException {
+    public ClientControllerDTO identify(ClientControllerDTO dto) {
         Client entity = new Client();
         ClientAdapter.fillEntity(dto, entity);
         return ClientPresenter.toDto(clientUseCase.identify(entity));
     }
 
-    public ClientControllerDTO create(ClientControllerDTO dto) throws NotFoundException {
+    public ClientControllerDTO create(ClientControllerDTO dto) {
         Client entity = new Client();
         ClientAdapter.fillEntity(dto, entity);
         entity = clientUseCase.create(entity);
@@ -49,5 +49,10 @@ public class ClientController {
     public void delete(String id) throws NotFoundException {
         Client entity = clientUseCase.read(id);
         clientUseCase.delete(entity);
+    }
+
+    public void deletePersonalData(String nationalId) throws NotFoundException {
+        Client entity = clientUseCase.findByNationalId(nationalId);
+        clientUseCase.deletePersonalData(entity);
     }
 }

@@ -21,4 +21,5 @@ public interface IClientUseCase {
 
     void delete(Client entity);
 
+    void deletePersonalData(Client client);
 }
