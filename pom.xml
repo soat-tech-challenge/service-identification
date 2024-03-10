@@ -13,7 +13,7 @@
     <artifactId>serviceidentification</artifactId>
     <version>4.4.0</version>
     <name>Service Identification</name>
-    <description>FIAP SOAT1 2023 - Group 63 - Phase 5</description>
+    <description>FIAP SOAT1 2023 - Group 63 - Phase 5 </description>
     <properties>
         <java.version>17</java.version>
         <sonar.coverage.exclusions>
