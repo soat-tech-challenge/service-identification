@@ -16,4 +16,5 @@ COPY $JAR_FILE app.jar
 # Execute application
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
+EXPOSE 8001
 EXPOSE 8080
