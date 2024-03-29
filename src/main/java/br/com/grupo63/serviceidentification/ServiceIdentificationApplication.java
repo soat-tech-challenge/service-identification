@@ -1,5 +1,6 @@
 package br.com.grupo63.serviceidentification;
 
+import br.com.grupo63.techchallenge.common.config.aws.ecs.ECSTaskIdInfoContributor;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -23,7 +24,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
 )
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = {
+        ServiceIdentificationApplication.class,
+        ECSTaskIdInfoContributor.class
+})
 public class ServiceIdentificationApplication {
 
     public static void main(String[] args) {

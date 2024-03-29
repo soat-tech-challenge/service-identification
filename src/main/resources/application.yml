@@ -55,7 +55,3 @@ info:
   description: "@project.description@"
   version: "@project.version@"
 
-jwt:
-  token:
-    key:
-      public: "${JWT_PUBLIC_KEY}"
